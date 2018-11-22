@@ -1,0 +1,191 @@
+<?page id="testZul" title=" New ZUL Title" cacheable="false"language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<!-- <?script src="js/jquery.js" ?>
+<?script src="js/jquery.meio.mask.js" ?> -->
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+	<window use="model.view.FornecedorComplexcad"
+		id="wCadFornecedorComplex" title="Cadastro de Fornecedor"
+		border="normal" shadow="false" width="650px" position="center"
+		mode="overlapped" sizable="false" closable="false"
+		onCreate="wCadFornecedorComplex.initComponentes()">
+		<separator height="10px" />
+
+
+		<grid width="99%" align="center">
+			<columns>
+				<column label="" align="right" />
+				<column label="" />
+			</columns>
+			<rows>
+				<row>
+					Código
+					<intbox id="idfornecedor"
+						value="@{wCadFornecedorComplex.fornecedor.idfornecedor}"
+						width="150px" readonly="true" />
+				</row>
+				<row>
+					Nome do Fornecedor
+					<textbox id="nomefornecedor"
+						value="@{wCadFornecedorComplex.fornecedor.nomefornecedor}"
+						width="150px" maxlength="100"
+						constraint="no empty:Entre com a Nome do Fornecedor" />
+				</row>
+				<row>
+					Descrição
+					<textbox id="descricao"
+						value="@{wCadFornecedorComplex.fornecedor.descricao}"
+						width="150px" maxlength="300"
+						constraint="no empty:Entre com a Descrição" />
+				</row>
+				<row>
+					Endereço
+					<textbox id="endereco"
+						value="@{wCadFornecedorComplex.fornecedor.endereco}" width="150px"
+						maxlength="150" />
+				</row>
+				<row>
+					Cnpj
+					<hbox>
+						<textbox id="cnpj"
+							value="@{wCadFornecedorComplex.fornecedor.cnpj}" width="150px"
+							maxlength="20" constraint="no empty:Entre com a Cpf/Cnpj">
+							<!-- <attribute name="onCreate">
+	                     String maskCommand = "applyMask('" + cnpj.getUuid()
+			+ "','99.999.999/9999-99')";
+	                          Clients.evalJavaScript(maskCommand);
+                              </attribute> -->
+						</textbox>
+						<!-- 
+							<textbox id="cnpj" 
+							value="@{wCadFornecedorComplex.fornecedor.cnpj}" width="150px"
+							maxlength="20"  constraint="no empty:Entre com a Cpf/Cnpj"  >
+							<attribute name="onCreate">
+							String maskCommand = "applyMask('" + cnpj.getUuid() + "','99.999.999/9999-99')";
+							Clients.evalJavaScript(maskCommand);
+							
+							</attribute>
+							</textbox>
+						-->
+					</hbox>
+				</row>
+				<row>
+					Cidade
+					<hbox>
+
+						<intbox id="idcidade"
+							value="@{wCadFornecedorComplex.fornecedor.cidade.idcidade}"
+							readonly="true" width="60px" />
+						<textbox
+							value="@{wCadFornecedorComplex.cidade.nomecidade}"
+							readonly="true" width="250px" />
+						<image src="/images/imgBuscar.png"
+							tooltiptext="Pesquisar Cidade"
+							onClick="wCadFornecedorComplex.pesquisarCidade()" />
+						<image src="/images/btnIncluir.png"
+							onClick="wCadFornecedorComplex.addCidade()" />
+					</hbox>
+				</row>
+				<group label="Produtos" style="text-align:left" />
+				<row>
+					<label value="Tipo" />
+					<hbox>
+						<combobox id="tipoproduto"
+							model="@{wCadFornecedorComplex.lmTipoProduto}"
+							selectedItem="@{wCadFornecedorComplex.tipoProduto}">
+							<comboitem self="@{each=tpp}" value="@{tpp}"
+								label="@{tpp.descricao}" />
+						</combobox>
+
+						<image src="/images/imgBuscar.png"
+							tooltiptext="Pesquisar Produtos"
+							onClick="wCadFornecedorComplex.pesquisarProdutos()" />
+					</hbox>
+				</row>
+				<row spans="2">
+					<columnlayout height="190px">
+						<columnchildren width="39%">
+							<panel title="Produtos pesquisadas: ">
+
+								<panelchildren>
+									<listbox id="left" multiple="true"
+										height="150px" checkmark="true"
+										model="@{wCadFornecedorComplex.pesquisados}">
+										<listhead>
+											<listheader label="Codigo"
+												width="100px">
+												<image
+													src="/images/btnIncluir.png"
+													tooltiptext="Adicionar Tipo de Periferico"
+													onClick="wCadFornecedorComplex.addPecratVO()" />
+											</listheader>
+											<listheader label="Produto" />
+										</listhead>
+										<listitem self="@{each=pes}"
+											value="@{pes}">
+											<listcell
+												label="@{pes.idproduto}" />
+											<listcell
+												label="@{pes.nomeproduto}" />
+										</listitem>
+									</listbox>
+								</panelchildren>
+							</panel>
+						</columnchildren>
+						<columnchildren width="32px">
+							<panel>
+								<panelchildren
+									style="margin: 70px 0px;">
+									<image sclass="pointer"
+										src="/images/ButtonArrowRightDouble.png"
+										tooltiptext="Add Project"
+										onClick="wCadFornecedorComplex.selecionaProduto()" />
+									<separator height="15px" />
+									<image sclass="pointer"
+										src="/images/ButtonArrowLeftDouble.png"
+										tooltiptext="Remove Project"
+										onClick="wCadFornecedorComplex.deselecionaProduto()" />
+								</panelchildren>
+							</panel>
+						</columnchildren>
+						<columnchildren width="59%">
+							<panel title="Produtos selecionados:"
+								height="">
+								<panelchildren>
+									<listbox id="right" multiple="true"
+										height="150px" checkmark="true"
+										model="@{wCadFornecedorComplex.selecionados}">
+										<listhead>
+											<listheader label="Codigo"
+												width="70px" />
+											<listheader label="Produto"
+												width="140px" />
+											<listheader
+												label="Avaliação" width="150px" />
+										</listhead>
+										<listitem self="@{each=sel}"
+											value="@{sel}">
+											<listcell
+												label="@{sel.produto.idproduto}" />
+											<listcell
+												label="@{sel.produto.nomeproduto}" />
+											<listcell>
+												<textbox
+													value="@{sel.avaliacaoproduto}" />
+											</listcell>
+										</listitem>
+									</listbox>
+								</panelchildren>
+							</panel>
+						</columnchildren>
+
+					</columnlayout>
+
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+	</window>
+</zk>

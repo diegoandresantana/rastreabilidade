@@ -1,0 +1,73 @@
+<?page id="testZul" title=" New ZUL Title" cacheable="false"language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.NotaItemcad" id="wCadNotaItem"
+		title="Cadastro de Itens da Nota" border="normal" shadow="false"
+		width="550px" position="center" mode="overlapped" sizable="false"
+		closable="false" onCreate="wCadNotaItem.initComponentes()">
+		<separator height="10px" />
+		<grid width="90%" align="center">
+			<columns>
+				<column label="" align="right" />
+				<column label="" />
+			</columns>
+			<rows>
+				<row>
+					Código
+					<longbox id="idnotaitem"
+						value="@{wCadNotaItem.notaItem.idnotaitem}" width="150px"
+						readonly="true" />
+				</row>
+				<row>
+					Quantidade
+					<doublebox id="quantidade"
+						value="@{wCadNotaItem.notaItem.quantidade}" width="150px"
+						constraint="no empty:Entre com a Quantidade" />
+				</row>
+				<row>
+					Validade
+					<datebox id="validade"
+						value="@{wCadNotaItem.notaItem.validade}" width="150px"
+						constraint="no empty:Entre com a Validade" format="dd/MM/yyyy" />
+				</row>
+				<row>
+					Produtos do Fornecedor
+					<hbox>
+
+						<intbox id="idfornecedorproduto"
+							value="@{wCadNotaItem.notaItem.fornecedorproduto.idfornecedorproduto}"
+							readonly="true" width="60px" />
+						<textbox
+							value="@{wCadNotaItem.fornecedorproduto.idfornecedorproduto}"
+							readonly="true" width="250px" />
+						<image src="/images/imgBuscar.png"
+							tooltiptext="Pesquisar Produtos do Fornecedor"
+							onClick="wCadNotaItem.pesquisarFornecedorProduto()" />
+						<image src="/images/btnIncluir.png"
+							onClick="wCadNotaItem.addFornecedorProduto()" />
+					</hbox>
+				</row>
+				<row>
+					Nota Fiscal
+					<hbox>
+
+						<longbox id="idnotafiscal"
+							value="@{wCadNotaItem.notaItem.notafiscal.idnotafiscal}"
+							readonly="true" width="60px" />
+						<textbox
+							value="@{wCadNotaItem.notafiscal.idnotafiscal}" readonly="true"
+							width="250px" />
+						<image src="/images/imgBuscar.png"
+							tooltiptext="Pesquisar Nota Fiscal"
+							onClick="wCadNotaItem.pesquisarNotaFiscal()" />
+						<image src="/images/btnIncluir.png"
+							onClick="wCadNotaItem.addNotaFiscal()" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+	</window>
+</zk>

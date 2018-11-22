@@ -1,0 +1,147 @@
+<?page id="NotaFiscalcadZul" title=" New ZUL Title" cacheable="false"language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.NotaFiscalcad" id="wCadNotaFiscal"
+		title="Cadastro de Nota Fiscal" border="normal" shadow="false"
+		width="650px" position="center" mode="overlapped" sizable="false"
+		closable="false" onCreate="wCadNotaFiscal.initComponentes()">
+		<tabbox id="tbNotaFiscal" height="100%" orient="horizontal">
+			<tabs width="20px">
+				<tab label="Nota Fiscal" />
+				<tab label="Itens da Nota" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<separator height="10px" />
+					<grid width="90%" align="center">
+						<columns>
+							<column label="" align="right" />
+							<column label="" align="left" />
+						</columns>
+						<rows>
+							<row>
+								Código
+								<longbox id="idnotafiscal"
+									value="@{wCadNotaFiscal.notaFiscal.idnotafiscal}"
+									readonly="true" width="150px" />
+							</row>
+							<row>
+								Data de Emissão
+								<datebox id="dataemissao"
+									value="@{wCadNotaFiscal.notaFiscal.dataemissao}"
+									constraint="no empty:Entre com a Data de Emissão"
+									format="dd/MM/yyyy" width="150px" />
+							</row>
+							<row>
+								Data de Entrada
+								<datebox id="dataentrada"
+									value="@{wCadNotaFiscal.notaFiscal.dataentrada}"
+									constraint="no empty:Entre com a Data de Entrada"
+									format="dd/MM/yyyy" width="150px" />
+							</row>
+							<row>
+								Fornecedor
+								<hbox>
+
+									<intbox id="idfornecedor"
+										value="@{wCadNotaFiscal.notaFiscal.fornecedor.idfornecedor}"
+										readonly="true" width="60px" />
+									<textbox
+										value="@{wCadNotaFiscal.fornecedor.nomefornecedor}"
+										readonly="true" width="250px" />
+									<image src="/images/imgBuscar.png"
+										tooltiptext="Pesquisar Fornecedor"
+										onClick="wCadNotaFiscal.pesquisarFornecedor()" />
+									<image src="/images/btnIncluir.png"
+										onClick="wCadNotaFiscal.addFornecedor()" />
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<separator height="10px" />
+					<grid width="90%" align="center">
+						<columns>
+							<column label="" align="right" />
+							<column label="" align="left" />
+						</columns>
+						<rows>
+							<row>
+								Código
+								<longbox id="idnotaitem"
+									value="@{wCadNotaFiscal.notaItem.idnotaitem}" readonly="true"
+									width="150px" />
+							</row>
+							<row>
+								Quantidade
+								<doublebox id="quantidade"
+									value="@{wCadNotaFiscal.notaItem.quantidade}"
+									constraint="no empty:Entre com a Quantidade" width="150px" />
+							</row>
+							<row>
+								Validade
+								<datebox id="validade"
+									value="@{wCadNotaFiscal.notaItem.validade}"
+									constraint="no empty:Entre com a Validade" format="dd/MM/yyyy"
+									width="150px" />
+							</row>
+							<row>
+								Produtos do Fornecedor
+								<hbox>
+
+									<intbox id="idfornecedorproduto"
+										value="@{wCadNotaFiscal.notaItem.fornecedorproduto.idfornecedorproduto}"
+										readonly="true" width="60px" />
+									<textbox
+										value="@{wCadNotaFiscal.fornecedorproduto.produtoEFornecedor}"
+										readonly="true" width="250px" />
+									<image src="/images/imgBuscar.png"
+										tooltiptext="Pesquisar Produtos do Fornecedor"
+										onClick="wCadNotaFiscal.pesquisarFornecedorProduto()" />
+									<image src="/images/btnIncluir.png"
+										onClick="wCadNotaFiscal.addFornecedorProduto()" />
+								</hbox>
+							</row>
+					
+							<row spans="2" style="text-align:center">
+								<button image="/images/down.png"
+									onClick="wCadNotaFiscal.addItem()" />
+							</row>
+						</rows>
+					</grid>
+					<listbox model="@{wCadNotaFiscal.listNotaItem}"
+						width="640px" height="200px" mold="paging" rows="16" pageSize="10"
+						pagingPosition="top" checkmark="true">
+						<listhead>
+							<listheader label="Código" width="100px" />
+							<listheader label="Quantidade"
+								width="100px" />
+							<listheader label="Validade" width="100px" />
+							<listheader label="Produtos do Fornecedor"
+								width="150px" />
+							<listheader label="Nota Fiscal"
+								width="150px" />
+							<listheader label="" width="70px" />
+						</listhead>
+						<listitem self="@{each=notaitem}" value="@{notaitem}">
+							<listcell label="@{notaitem.idnotaitem}" />
+							<listcell label="@{notaitem.quantidade}" />
+							<listcell label="@{notaitem.validade}" />
+							<listcell
+								label="@{notaitem.fornecedorproduto.produtoEFornecedor}" />
+							<listcell
+								label="@{notaitem.notafiscal.idnotafiscal}" />
+							<listcell label="">
+								<image src="/images/delete.png" onClick="wCadNotaFiscal.removerItem(self.parent.parent.value)" />
+							</listcell>
+						</listitem>
+					</listbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		<separator height="10px" />
+	</window>
+</zk>

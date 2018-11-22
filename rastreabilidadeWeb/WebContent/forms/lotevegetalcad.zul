@@ -1,0 +1,215 @@
+<?page id="wCadLoteVegetalZul" title="Cadastro de Lote de Vegetal" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.LoteVegetalcad" id="wCadLoteVegetal"
+		title="Cadastro de Lote de Vegetal" border="normal" shadow="false"
+		width="670px" position="center" mode="overlapped" sizable="false"
+		closable="false" onCreate="wCadLoteVegetal.initComponentes()"  logado="true">
+		<separator height="10px" />
+		<tabbox id="tbLoteVegetal"  orient="horizontal">
+			<tabs width="20px">
+				<tab label="Lote de Vegetal" />
+				<tab label="Histórico" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<separator height="10px" />
+					<grid width="90%" align="center">
+						<columns>
+							<column label="" align="right" />
+							<column label="" align="left" />
+						</columns>
+						<rows>
+							<row>
+								<hbox>
+									<label value="Código" />
+								</hbox>
+								<longbox id="idlotevegetal"
+									value="@{wCadLoteVegetal.loteVegetal.idlotevegetal}"
+									readonly="true" width="150px" />
+							</row>
+							<row>
+								<hbox>
+								<label
+										style="font-weight:bold;color:red" value="*" />
+									<label value="Tipo de Vegetal" />
+									
+								</hbox>
+								<textbox id="tipovegetal"
+									value="@{wCadLoteVegetal.loteVegetal.tipovegetal}"
+									maxlength="60"
+									constraint="no empty:Entre com a Tipo de Vegetal"
+									width="250px" />
+							</row>
+							<row>
+								<hbox>
+								
+								<label
+										style="font-weight:bold;color:red" value="*" />
+									<label value="Inicio do Plantio" />
+									
+								</hbox>
+								<datebox id="inicioplantio"
+									value="@{wCadLoteVegetal.loteVegetal.inicioplantio}"
+									constraint="no empty:Entre com a Inicio do Plantio"
+									format="dd/MM/yyyy" width="150px" />
+							</row>
+							<row>
+								<hbox>
+									<label value="Final da Colheita" />
+									
+								</hbox>
+								<datebox id="finalcolheita"
+									value="@{wCadLoteVegetal.loteVegetal.finalcolheita}"
+									format="dd/MM/yyyy" width="150px" />
+							</row>
+							<row>
+								<hbox>
+								<label
+										style="font-weight:bold;color:red" value="*" />
+									<label value="Setor de Plantio" />
+									
+								</hbox>
+
+								<hbox>
+
+
+									<intbox id="idsetorplantio"
+										readonly="true"
+										value="@{wCadLoteVegetal.setorplantio.idsetorplantio}"
+										width="60px" />
+									<textbox
+										value="@{wCadLoteVegetal.setorplantio.codigosetor}"
+										readonly="true" width="250px" />
+
+									<image src="/images/imgBuscar.png"
+										tooltiptext="Pesquisar Setor de Plantio"
+										onClick="wCadLoteVegetal.pesquisarSetorPlantio()" />
+
+
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<grid width="90%" align="center">
+						<columns>
+							<column label="" align="right" />
+							<column label="" align="left" />
+						</columns>
+						<rows>
+							<row>
+								<hbox>
+									<label
+										style="font-weight:bold;color:red" value="**" />
+									<label value="Descrição" />
+								</hbox>
+								<textbox id="descricao"
+									value="@{wCadLoteVegetal.historico.descricao}" maxlength="500"
+									 width="250px" />
+							</row>
+							<row>
+								<hbox>
+									<label
+										style="font-weight:bold;color:red" value="**" />
+									<label value="Data" />
+
+								</hbox>
+								<datebox id="data"
+									value="@{wCadLoteVegetal.historico.data}"
+									 format="dd/MM/yyyy"
+									width="110px" />
+							</row>
+							<row>
+								<hbox>								
+									<label value="Dado Númerico" />
+								</hbox>
+								<doublebox id="dadonumerico"
+									value="@{wCadLoteVegetal.historico.dadonumerico}"
+									 width="150px" />
+							</row>
+
+							<row>
+								<hbox>
+									<label
+										style="font-weight:bold;color:red" value="**" />
+									<label value="Tipo de Histórico" />
+
+								</hbox>
+
+								<hbox>
+									<combobox id="tipohistorico"
+										model="@{wCadLoteVegetal.lmTipoHistorico}"
+										name="tipohistorico"
+										selectedItem="@{wCadLoteVegetal.tipohistorico}"
+										width="200px">
+										<comboitem	self="@{each=tipohistorico}" value="@{tipohistorico}"
+											label="@{tipohistorico.descricao}" />
+									</combobox>
+									<image src="/images/btnIncluir.png"
+										onClick="wCadLoteVegetal.addTipoHistorico()" />
+
+								</hbox>
+							</row>
+							<row>
+
+								<label value="Produto" />
+								<hbox>
+									<combobox id="produto"
+										model="@{wCadLoteVegetal.lmProduto}" name="produto"
+										selectedItem="@{wCadLoteVegetal.produto}" width="200px">
+										<comboitem
+											self="@{each=produto}" value="@{produto}"
+											label="@{produto.nomeproduto}" />
+									</combobox>
+									<image src="/images/btnIncluir.png"
+										onClick="wCadLoteVegetal.addProduto()" />
+									<image src="/images/btnLimpar.png"
+										onClick="wCadLoteVegetal.limparProduto()" />
+								</hbox>
+							</row>
+							<row spans="2" style="text-align:center">
+								<button image="/images/down.png"
+									onClick="wCadLoteVegetal.addItem()" />
+							</row>
+						</rows>
+					</grid>
+
+					<listbox id="listHistorico"
+						model="@{wCadLoteVegetal.listHistorico}" width="98%"
+						height="250px" mold="paging" pageSize="10" pagingPosition="top"
+						checkmark="false">
+						<listhead>							
+							<listheader label="Descrição" width="200px" />
+							<listheader label="Data" width="100px" />
+							<listheader label="Dado Númerico" width="100px" />
+							<listheader label="Tipo Histórico"	width="183px" />
+							<listheader label="" />
+						</listhead>
+						<listitem self="@{each=historico}"	value="@{historico}">
+						
+							<listcell label="@{historico.descricao}" />
+							<listcell label="@{historico.data}" />
+							<listcell label="@{historico.dadonumerico}" />
+							<listcell
+								label="@{historico.tipohistorico.descricao}" />
+							<listcell label="">
+								<image src="/images/delete.png"
+									onClick="wCadLoteVegetal.removerItem(self.parent.parent.value)" />
+							</listcell>
+						</listitem>
+					</listbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		<label style="color:red;font-size:10px"
+			value="*Campos Obrigatórios" />
+			<separator height="10px" />
+	<label style="color:red;font-size:10px"
+			value="**Campos Obrigatórios para adicionar Histórico" />
+		
+	</window>
+</zk>

@@ -1,0 +1,76 @@
+<?page id="wLisFornecedorProdutoZul" title="Lista de Produtos do Fornecedor" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.FornecedorProdutolis" id="wLisFornecedorProduto" 
+ 		title="Lista de Produtos do Fornecedor" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisFornecedorProduto.initComponentes()">
+			    
+ 		<paging id="pagFornecedorProduto" pageSize="10"  />
+					 
+ 		<listbox id="listFornecedorProduto" model="@{wLisFornecedorProduto.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisFornecedorProduto.item}"    
+ 			onSelect="wLisFornecedorProduto.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <intbox id="idfornecedorproduto" value="@{wLisFornecedorProduto.fornecedorProduto.idfornecedorproduto}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Fornecedor"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="nomefornecedor" value="@{wLisFornecedorProduto.fornecedor.nomefornecedor}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Fornecedor" 	   onClick="wLisFornecedorProduto.pesquisarFornecedor()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Produto"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="nomeproduto" value="@{wLisFornecedorProduto.produto.nomeproduto}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Produto" 	   onClick="wLisFornecedorProduto.pesquisarProduto()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Avaliação do Produto"/>
+							<textbox id="avaliacaoproduto" value="@{wLisFornecedorProduto.fornecedorProduto.avaliacaoproduto}"  maxlength="250"  width="150px"  />
+							</vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=fornecedorproduto}">
+					    <listcell	  label="@{fornecedorproduto.idfornecedorproduto}" />
+					    <listcell	  label="@{fornecedorproduto.fornecedor.nomefornecedor}" />
+					    <listcell	  label="@{fornecedorproduto.produto.nomeproduto}" />
+					    <listcell	  label="@{fornecedorproduto.avaliacaoproduto}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

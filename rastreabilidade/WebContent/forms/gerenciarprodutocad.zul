@@ -1,0 +1,91 @@
+<?page id="wCadGerenciarProdutoZul" title="Cadastro de Gerenciamento de Produtos" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?> 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"> 
+ 	<window use="model.view.GerenciarProdutocad" id="wCadGerenciarProduto" 
+ 		title="Cadastro de Gerenciamento de Produtos" border="normal" shadow="false" 
+ 		width="550px" position="center" mode="overlapped" sizable="false" 
+ 		closable="false" onCreate="wCadGerenciarProduto.initComponentes()"> 
+ 		<separator height="10px" /> 
+ 		 
+ 		<grid width="90%" align="center"> 
+ 			<columns> 
+ 				<column label="" align="right" /> 
+ 				<column label="" align="left" />				 
+ 			</columns> 
+ 			<rows>			 
+ 				<row>
+	<hbox>
+		<label value="Código" />
+		</hbox>
+	 <longbox id="idgerenciarproduto" value="@{wCadGerenciarProduto.gerenciarProduto.idgerenciarproduto}"  readonly="true"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Descrição" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<textbox id="descricao" value="@{wCadGerenciarProduto.gerenciarProduto.descricao}" maxlength="300"  constraint="no empty:Entre com a Descrição" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Data da Utilização" />
+		<label style="color:red" value="*" />
+		</hbox>
+	 <datebox id="datautilizacao" value="@{wCadGerenciarProduto.gerenciarProduto.datautilizacao}"  constraint="no empty:Entre com a Data da Utilização" format="dd/MM/yyyy"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Quantidade Utilizada" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<doublebox id="quantidadeutilizada" value="@{wCadGerenciarProduto.gerenciarProduto.quantidadeutilizada}"  constraint="no empty:Entre com a Quantidade Utilizada" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Lote de Vegetal" />
+		<label style="color:red" value="*" />
+		</hbox>
+	
+<hbox>
+		
+ 	 
+<longbox id="idlotevegetal"  value="@{wCadGerenciarProduto.lotevegetal.idlotevegetal}"  width="60px"   onOK="wCadGerenciarProduto.buscaPorCodLoteVegetal()"  />
+		
+ <textbox value="@{wCadGerenciarProduto.lotevegetal.idlotevegetal}"  readonly="true" width="250px" />
+		
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Lote de Vegetal" 	   onClick="wCadGerenciarProduto.pesquisarLoteVegetal()"/>
+		<image src="/images/btnIncluir.png" onClick="wCadGerenciarProduto.addLoteVegetal()"/>
+		
+</hbox>
+	 </row>
+<row>
+	<hbox>
+		<label value="Itens da Nota" />
+		<label style="color:red" value="*" />
+		</hbox>
+	
+<hbox>
+		
+ 	 
+<longbox id="idnotaitem"  value="@{wCadGerenciarProduto.notaitem.idnotaitem}"  width="60px"   onOK="wCadGerenciarProduto.buscaPorCodNotaItem()"  />
+		
+ <textbox value="@{wCadGerenciarProduto.notaitem.idnotaitem}"  readonly="true" width="250px" />
+		
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Itens da Nota" 	   onClick="wCadGerenciarProduto.pesquisarNotaItem()"/>
+		<image src="/images/btnIncluir.png" onClick="wCadGerenciarProduto.addNotaItem()"/>
+		
+</hbox>
+	 </row>
+ 
+ 				 
+ 				<row spans="2" style="text-align:left"> 
+ 				<label style="color:red" value="*Campos Obrigatórios" /> 
+ 				</row> 
+ 			</rows> 
+ 		</grid> 
+ 		<separator height="10px" /> 
+ 	</window> 
+ </zk> 
+ 

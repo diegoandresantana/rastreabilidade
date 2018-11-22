@@ -1,0 +1,56 @@
+<?page id="wLisCidadeZul" title="Lista de Cidade" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.Cidadelis" id="wLisCidade" 
+ 		title="Lista de Cidade" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisCidade.initComponentes()"  logado="true">
+			    
+ 		<paging id="pagCidade" pageSize="10"  />
+					 
+ 		<listbox id="listCidade" model="@{wLisCidade.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisCidade.item}"    
+ 			onSelect="wLisCidade.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="100px" >
+						<vbox>
+							<label value="Código"/>
+							 <intbox id="idcidade" value="@{wLisCidade.cidade.idcidade}"  width="80px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="260px" >
+						<vbox>
+							<label value="Nome da Cidade"/>
+							<textbox id="nomecidade" value="@{wLisCidade.cidade.nomecidade}"  maxlength="150"  width="250px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="183px" >
+						<vbox>
+							<label value="UF"/>
+							
+ <combobox id="uf" model="@{wLisCidade.lmUf}" name="uf" selectedItem="@{wLisCidade.uf}" width="150px" >
+									<comboitem self="@{each=uf}" value="@{uf}" label="@{uf.sigla}"/>
+								</combobox>
+							</vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=cidade}">
+					    <listcell	  label="@{cidade.idcidade}" />
+					    <listcell	  label="@{cidade.nomecidade}" />
+					    <listcell	  label="@{cidade.uf.sigla}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

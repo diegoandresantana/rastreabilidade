@@ -1,0 +1,61 @@
+<?page id="wCadCidadeZul" title="Cadastro de Cidade" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.Cidadecad" id="wCadCidade"
+		title="Cadastro de Cidade" border="normal" shadow="false"
+		width="550px" position="center" mode="overlapped" sizable="false"
+		closable="false" onCreate="wCadCidade.initComponentes()"  logado="true">
+		<separator height="10px" />
+
+		<grid width="90%" align="center">
+			<columns>
+				<column label="" align="right" />
+				<column label="" align="left" />
+			</columns>
+			<rows>
+				<row>
+					<hbox>
+						<label value="Código" />
+					</hbox>
+					<intbox id="idcidade"
+						value="@{wCadCidade.cidade.idcidade}" readonly="true"
+						width="80px" />
+				</row>
+				<row>
+					<hbox>
+					    <label style="color:red" value="*" />
+						<label value="Nome da Cidade" />
+						
+					</hbox>
+					<textbox id="nomecidade"
+						value="@{wCadCidade.cidade.nomecidade}" maxlength="150"
+						constraint="no empty:Entre com a Nome da Cidade" width="250px" />
+				</row>
+				<row>
+					<hbox>
+						<label style="color:red" value="*" />
+						<label value="UF" />						
+					</hbox>
+					<hbox>
+						<combobox id="uf" model="@{wCadCidade.lmUf}"
+							name="uf" selectedItem="@{wCadCidade.uf}" width="150px">
+							<comboitem self="@{each=uf}" value="@{uf}"
+								label="@{uf.sigla}" />
+						</combobox>
+						<image src="/images/btnIncluir.png"
+							onClick="wCadCidade.addUf()" />
+
+					</hbox>
+				</row>
+
+				<row spans="2" style="text-align:left">
+					<label  style="color:red;font-size:10px"
+						value="*Campos Obrigatórios" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+	</window>
+</zk>

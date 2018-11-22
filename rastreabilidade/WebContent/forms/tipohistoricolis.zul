@@ -1,0 +1,56 @@
+<?page id="wLisTipoHistoricoZul" title="Lista de Tipo de Histórico" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.TipoHistoricolis" id="wLisTipoHistorico" 
+ 		title="Lista de Tipo de Histórico" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisTipoHistorico.initComponentes()">
+			    
+ 		<paging id="pagTipoHistorico" pageSize="10"  />
+					 
+ 		<listbox id="listTipoHistorico" model="@{wLisTipoHistorico.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisTipoHistorico.item}"    
+ 			onSelect="wLisTipoHistorico.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <intbox id="idtipohistorico" value="@{wLisTipoHistorico.tipoHistorico.idtipohistorico}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Descrição"/>
+							<textbox id="descricao" value="@{wLisTipoHistorico.tipoHistorico.descricao}"  maxlength="300"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="183px" >
+						<vbox>
+							<label value="Unidade de Medida"/>
+							
+ <combobox id="unidademedida" model="@{wLisTipoHistorico.lmUnidadeMedida}" name="unidademedida" selectedItem="@{wLisTipoHistorico.unidademedida}" width="150px" >
+									<comboitem self="@{each=unidademedida}" value="@{unidademedida}" label="@{unidademedida.descricao}"/>
+								</combobox>
+							</vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=tipohistorico}">
+					    <listcell	  label="@{tipohistorico.idtipohistorico}" />
+					    <listcell	  label="@{tipohistorico.descricao}" />
+					    <listcell	  label="@{tipohistorico.unidademedida.descricao}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

@@ -1,0 +1,68 @@
+<?page id="wLisNotaFiscalZul" title="Lista de Nota Fiscal" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.NotaFiscallis" id="wLisNotaFiscal" 
+ 		title="Lista de Nota Fiscal" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisNotaFiscal.initComponentes()">
+			    
+ 		<paging id="pagNotaFiscal" pageSize="10"  />
+					 
+ 		<listbox id="listNotaFiscal" model="@{wLisNotaFiscal.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisNotaFiscal.item}"    
+ 			onSelect="wLisNotaFiscal.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <longbox id="idnotafiscal" value="@{wLisNotaFiscal.notaFiscal.idnotafiscal}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Data de Emissão"/>
+							  <datebox id="dataemissao" value="@{wLisNotaFiscal.notaFiscal.dataemissao}"  format="dd/MM/yyyy"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Data de Entrada"/>
+							  <datebox id="dataentrada" value="@{wLisNotaFiscal.notaFiscal.dataentrada}"  format="dd/MM/yyyy"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Fornecedor"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="nomefornecedor" value="@{wLisNotaFiscal.fornecedor.nomefornecedor}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Fornecedor" 	   onClick="wLisNotaFiscal.pesquisarFornecedor()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=notafiscal}">
+					    <listcell	  label="@{notafiscal.idnotafiscal}" />
+					    <listcell	  label="@{notafiscal.dataemissao}" />
+					    <listcell	  label="@{notafiscal.dataentrada}" />
+					    <listcell	  label="@{notafiscal.fornecedor.nomefornecedor}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

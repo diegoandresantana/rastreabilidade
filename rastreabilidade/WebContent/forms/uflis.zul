@@ -1,0 +1,53 @@
+<?page id="wLisUfZul" title="Lista de UF" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.Uflis" id="wLisUf" 
+ 		title="Lista de UF" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisUf.initComponentes()">
+			    
+ 		<paging id="pagUf" pageSize="10"  />
+					 
+ 		<listbox id="listUf" model="@{wLisUf.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisUf.item}"    
+ 			onSelect="wLisUf.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <intbox id="iduf" value="@{wLisUf.uf.iduf}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Sigla"/>
+							<textbox id="sigla" value="@{wLisUf.uf.sigla}"  maxlength="2"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Nome do Estado"/>
+							<textbox id="nome" value="@{wLisUf.uf.nome}"  maxlength="100"  width="150px"  />
+							</vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=uf}">
+					    <listcell	  label="@{uf.iduf}" />
+					    <listcell	  label="@{uf.sigla}" />
+					    <listcell	  label="@{uf.nome}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

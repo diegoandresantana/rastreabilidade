@@ -1,0 +1,83 @@
+<?page id="wCadProdutoZul" title="Cadastro de Produto" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.Produtocad" id="wCadProduto"
+		title="Cadastro de Produto" border="normal" shadow="false"
+		width="550px" position="center" mode="overlapped" sizable="false"
+		closable="false" onCreate="wCadProduto.initComponentes()"  logado="true">
+		<separator height="10px" />
+
+		<grid width="90%" align="center">
+			<columns>
+				<column label="" align="right" />
+				<column label="" align="left" />
+			</columns>
+			<rows>
+				<row>
+					<hbox>
+						<label value="Código" />
+					</hbox>
+					<intbox id="idproduto"
+						value="@{wCadProduto.produto.idproduto}" readonly="true"
+						width="80px" />
+				</row>
+				<row>
+					<hbox>
+					<label style="font-weight:bold;color:red" value="*" />
+						<label value="Nome do Produto" />						
+					</hbox>
+					<textbox id="nomeproduto"
+						value="@{wCadProduto.produto.nomeproduto}" maxlength="100"
+						constraint="no empty:Entre com a Nome do Produto" width="250px" />
+				</row>
+
+				<row>
+					<hbox>
+					     <label style="font-weight:bold;color:red" value="*" />
+					     <label value="Tipo do Produto" />						
+					</hbox>
+
+					<hbox>
+
+						<combobox id="tipoproduto"
+							model="@{wCadProduto.lmTipoProduto}" name="tipoproduto"
+							selectedItem="@{wCadProduto.tipoproduto}" width="150px">
+							<comboitem self="@{each=tipoproduto}"
+								value="@{tipoproduto}" label="@{tipoproduto.descricao}" />
+						</combobox>
+						<image src="/images/btnIncluir.png"
+							onClick="wCadProduto.addTipoProduto()" />
+
+					</hbox>
+				</row>
+				<row>
+					<hbox>
+					<label style="font-weight:bold;color:red" value="*" />
+						<label value="Unidade de Medida" />
+						
+					</hbox>
+
+					<hbox>
+						<combobox id="unidademedida"
+							model="@{wCadProduto.lmUnidadeMedida}" name="unidademedida"
+							selectedItem="@{wCadProduto.unidademedida}" width="150px">
+							<comboitem self="@{each=unidademedida}"
+								value="@{unidademedida}" label="@{unidademedida.descricao}" />
+						</combobox>
+						<image src="/images/btnIncluir.png"
+							onClick="wCadProduto.addUnidadeMedida()" />
+					</hbox>
+				</row>
+
+
+				<row spans="2" style="text-align:left">
+					<label  style="color:red;font-size:10px"
+						value="*Campos Obrigatórios" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+	</window>
+</zk>

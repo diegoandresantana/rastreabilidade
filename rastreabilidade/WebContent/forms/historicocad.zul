@@ -1,0 +1,89 @@
+<?page id="wCadHistoricoZul" title="Cadastro de Histórico" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?> 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"> 
+ 	<window use="model.view.Historicocad" id="wCadHistorico" 
+ 		title="Cadastro de Histórico" border="normal" shadow="false" 
+ 		width="550px" position="center" mode="overlapped" sizable="false" 
+ 		closable="false" onCreate="wCadHistorico.initComponentes()"> 
+ 		<separator height="10px" /> 
+ 		 
+ 		<grid width="90%" align="center"> 
+ 			<columns> 
+ 				<column label="" align="right" /> 
+ 				<column label="" align="left" />				 
+ 			</columns> 
+ 			<rows>			 
+ 				<row>
+	<hbox>
+		<label value="Código" />
+		</hbox>
+	 <longbox id="idhistorico" value="@{wCadHistorico.historico.idhistorico}"  readonly="true"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Descrição" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<textbox id="descricao" value="@{wCadHistorico.historico.descricao}" maxlength="500"  constraint="no empty:Entre com a Descrição" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Descrição" />
+		<label style="color:red" value="*" />
+		</hbox>
+	 <datebox id="data" value="@{wCadHistorico.historico.data}"  constraint="no empty:Entre com a Descrição" format="dd/MM/yyyy"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Dado Númerico" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<doublebox id="dadonumerico" value="@{wCadHistorico.historico.dadonumerico}"  constraint="no empty:Entre com a Dado Númerico" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Lote de Vegetal" />
+		<label style="color:red" value="*" />
+		</hbox>
+	
+<hbox>
+		
+ 	 
+<longbox id="idlotevegetal"  value="@{wCadHistorico.lotevegetal.idlotevegetal}"  width="60px"   onOK="wCadHistorico.buscaPorCodLoteVegetal()"  />
+		
+ <textbox value="@{wCadHistorico.lotevegetal.idlotevegetal}"  readonly="true" width="250px" />
+		
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Lote de Vegetal" 	   onClick="wCadHistorico.pesquisarLoteVegetal()"/>
+		<image src="/images/btnIncluir.png" onClick="wCadHistorico.addLoteVegetal()"/>
+		
+</hbox>
+	 </row>
+<row>
+	<hbox>
+		<label value="Tipo de Histórico" />
+		<label style="color:red" value="*" />
+		</hbox>
+	
+<hbox>
+		
+ 	
+ <combobox id="tipohistorico" model="@{wCadHistorico.lmTipoHistorico}" name="tipohistorico" selectedItem="@{wCadHistorico.tipohistorico}" width="150px" >
+				<comboitem self="@{each=tipohistorico}" value="@{tipohistorico}" label="@{tipohistorico.descricao}"/>
+			</combobox>
+		<image src="/images/btnIncluir.png" onClick="wCadHistorico.addTipoHistorico()"/>
+		
+</hbox>
+	 </row>
+ 
+ 				 
+ 				<row spans="2" style="text-align:left"> 
+ 				<label style="color:red" value="*Campos Obrigatórios" /> 
+ 				</row> 
+ 			</rows> 
+ 		</grid> 
+ 		<separator height="10px" /> 
+ 	</window> 
+ </zk> 
+ 

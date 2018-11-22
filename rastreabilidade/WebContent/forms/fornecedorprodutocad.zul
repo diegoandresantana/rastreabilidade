@@ -1,0 +1,69 @@
+<?page id="testZul" title=" New ZUL Title" cacheable="false"language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.FornecedorProdutocad"
+		id="wCadFornecedorProduto" title="Cadastro de Produtos do Fornecedor"
+		border="normal" shadow="false" width="550px" position="center"
+		mode="overlapped" sizable="false" closable="false"
+		onCreate="wCadFornecedorProduto.initComponentes()">
+		<separator height="10px" />
+		<grid width="90%" align="center">
+			<columns>
+				<column label="" align="right" />
+				<column label="" />
+			</columns>
+			<rows>
+				<row>
+					Código
+					<intbox id="idfornecedorproduto"
+						value="@{wCadFornecedorProduto.fornecedorProduto.idfornecedorproduto}"
+						width="150px" readonly="true" />
+				</row>
+				<row>
+					Fornecedor
+					<hbox>
+
+						<intbox id="idfornecedor"
+							value="@{wCadFornecedorProduto.fornecedorProduto.fornecedor.idfornecedor}"
+							readonly="true" width="60px" />
+						<textbox
+							value="@{wCadFornecedorProduto.fornecedor.nomefornecedor}"
+							readonly="true" width="250px" />
+						<image src="/images/imgBuscar.png"
+							tooltiptext="Pesquisar Fornecedor"
+							onClick="wCadFornecedorProduto.pesquisarFornecedor()" />
+						<image src="/images/btnIncluir.png"
+							onClick="wCadFornecedorProduto.addFornecedor()" />
+					</hbox>
+				</row>
+				<row>
+					Produto
+					<hbox>
+
+						<intbox id="idproduto"
+							value="@{wCadFornecedorProduto.fornecedorProduto.produto.idproduto}"
+							readonly="true" width="60px" />
+						<textbox
+							value="@{wCadFornecedorProduto.produto.nomeproduto}"
+							readonly="true" width="250px" />
+						<image src="/images/imgBuscar.png"
+							tooltiptext="Pesquisar Produto"
+							onClick="wCadFornecedorProduto.pesquisarProduto()" />
+						<image src="/images/btnIncluir.png"
+							onClick="wCadFornecedorProduto.addProduto()" />
+					</hbox>
+				</row>
+				<row>
+					Avaliação do Produto
+					<textbox id="avaliacaoproduto"
+						value="@{wCadFornecedorProduto.fornecedorProduto.avaliacaoproduto}"
+						width="150px" maxlength="250"
+						constraint="no empty:Entre com a Avaliação do Produto" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+	</window>
+</zk>

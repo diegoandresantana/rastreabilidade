@@ -1,0 +1,85 @@
+<?page id="wLisHistoricoZul" title="Lista de Histórico" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.Historicolis" id="wLisHistorico" 
+ 		title="Lista de Histórico" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisHistorico.initComponentes()">
+			    
+ 		<paging id="pagHistorico" pageSize="10"  />
+					 
+ 		<listbox id="listHistorico" model="@{wLisHistorico.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisHistorico.item}"    
+ 			onSelect="wLisHistorico.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <longbox id="idhistorico" value="@{wLisHistorico.historico.idhistorico}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Descrição"/>
+							<textbox id="descricao" value="@{wLisHistorico.historico.descricao}"  maxlength="500"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Descrição"/>
+							  <datebox id="data" value="@{wLisHistorico.historico.data}"  format="dd/MM/yyyy"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Dado Númerico"/>
+							<doublebox id="dadonumerico" value="@{wLisHistorico.historico.dadonumerico}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Lote de Vegetal"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="idlotevegetal" value="@{wLisHistorico.lotevegetal.idlotevegetal}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Lote de Vegetal" 	   onClick="wLisHistorico.pesquisarLoteVegetal()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					<listheader width="183px" >
+						<vbox>
+							<label value="Tipo de Histórico"/>
+							
+ <combobox id="tipohistorico" model="@{wLisHistorico.lmTipoHistorico}" name="tipohistorico" selectedItem="@{wLisHistorico.tipohistorico}" width="150px" >
+									<comboitem self="@{each=tipohistorico}" value="@{tipohistorico}" label="@{tipohistorico.descricao}"/>
+								</combobox>
+							</vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=historico}">
+					    <listcell	  label="@{historico.idhistorico}" />
+					    <listcell	  label="@{historico.descricao}" />
+					    <listcell	  label="@{historico.data}" />
+					    <listcell	  label="@{historico.dadonumerico}" />
+					    <listcell	  label="@{historico.lotevegetal.idlotevegetal}" />
+					    <listcell	  label="@{historico.tipohistorico.descricao}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

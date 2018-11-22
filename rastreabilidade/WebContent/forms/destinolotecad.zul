@@ -1,0 +1,77 @@
+<?page id="wCadDestinoLoteZul" title="Cadastro de Destino do Lote" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?> 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"> 
+ 	<window use="model.view.DestinoLotecad" id="wCadDestinoLote" 
+ 		title="Cadastro de Destino do Lote" border="normal" shadow="false" 
+ 		width="550px" position="center" mode="overlapped" sizable="false" 
+ 		closable="false" onCreate="wCadDestinoLote.initComponentes()"> 
+ 		<separator height="10px" /> 
+ 		 
+ 		<grid width="90%" align="center"> 
+ 			<columns> 
+ 				<column label="" align="right" /> 
+ 				<column label="" align="left" />				 
+ 			</columns> 
+ 			<rows>			 
+ 				<row>
+	<hbox>
+		<label value="Código" />
+		</hbox>
+	 <longbox id="iddestinolote" value="@{wCadDestinoLote.destinoLote.iddestinolote}"  readonly="true"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Data Destino" />
+		<label style="color:red" value="*" />
+		</hbox>
+	 <datebox id="data" value="@{wCadDestinoLote.destinoLote.data}"  constraint="no empty:Entre com a Data Destino" format="dd/MM/yyyy"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Cliente" />
+		<label style="color:red" value="*" />
+		</hbox>
+	
+<hbox>
+		
+ 	 
+<intbox id="idcliente"  value="@{wCadDestinoLote.cliente.idcliente}"  width="60px"   onOK="wCadDestinoLote.buscaPorCodCliente()"  />
+		
+ <textbox value="@{wCadDestinoLote.cliente.nomecliente}"  readonly="true" width="250px" />
+		
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Cliente" 	   onClick="wCadDestinoLote.pesquisarCliente()"/>
+		<image src="/images/btnIncluir.png" onClick="wCadDestinoLote.addCliente()"/>
+		
+</hbox>
+	 </row>
+<row>
+	<hbox>
+		<label value="Lote de Vegetal" />
+		<label style="color:red" value="*" />
+		</hbox>
+	
+<hbox>
+		
+ 	 
+<longbox id="idlotevegetal"  value="@{wCadDestinoLote.lotevegetal.idlotevegetal}"  width="60px"   onOK="wCadDestinoLote.buscaPorCodLoteVegetal()"  />
+		
+ <textbox value="@{wCadDestinoLote.lotevegetal.idlotevegetal}"  readonly="true" width="250px" />
+		
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Lote de Vegetal" 	   onClick="wCadDestinoLote.pesquisarLoteVegetal()"/>
+		<image src="/images/btnIncluir.png" onClick="wCadDestinoLote.addLoteVegetal()"/>
+		
+</hbox>
+	 </row>
+ 
+ 				 
+ 				<row spans="2" style="text-align:left"> 
+ 				<label style="color:red" value="*Campos Obrigatórios" /> 
+ 				</row> 
+ 			</rows> 
+ 		</grid> 
+ 		<separator height="10px" /> 
+ 	</window> 
+ </zk> 
+ 

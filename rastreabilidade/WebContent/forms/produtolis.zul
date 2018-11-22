@@ -1,0 +1,73 @@
+<?page id="wLisProdutoZul" title="Lista de Produto" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.Produtolis" id="wLisProduto" 
+ 		title="Lista de Produto" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisProduto.initComponentes()">
+			    
+ 		<paging id="pagProduto" pageSize="10"  />
+					 
+ 		<listbox id="listProduto" model="@{wLisProduto.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisProduto.item}"    
+ 			onSelect="wLisProduto.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <intbox id="idproduto" value="@{wLisProduto.produto.idproduto}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Nome do Produto"/>
+							<textbox id="nomeproduto" value="@{wLisProduto.produto.nomeproduto}"  maxlength="100"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Valor"/>
+							<doublebox id="valor" value="@{wLisProduto.produto.valor}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="183px" >
+						<vbox>
+							<label value="Tipo do Produto"/>
+							
+ <combobox id="tipoproduto" model="@{wLisProduto.lmTipoProduto}" name="tipoproduto" selectedItem="@{wLisProduto.tipoproduto}" width="150px" >
+									<comboitem self="@{each=tipoproduto}" value="@{tipoproduto}" label="@{tipoproduto.descricao}"/>
+								</combobox>
+							</vbox>
+						 </listheader>
+					<listheader width="183px" >
+						<vbox>
+							<label value="Unidade de Medida"/>
+							
+ <combobox id="unidademedida" model="@{wLisProduto.lmUnidadeMedida}" name="unidademedida" selectedItem="@{wLisProduto.unidademedida}" width="150px" >
+									<comboitem self="@{each=unidademedida}" value="@{unidademedida}" label="@{unidademedida.descricao}"/>
+								</combobox>
+							</vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=produto}">
+					    <listcell	  label="@{produto.idproduto}" />
+					    <listcell	  label="@{produto.nomeproduto}" />
+					    <listcell	  label="@{produto.valor}" />
+					    <listcell	  label="@{produto.tipoproduto.descricao}" />
+					    <listcell	  label="@{produto.unidademedida.descricao}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

@@ -1,0 +1,46 @@
+<?page id="wLisUnidadeMedidaZul" title="Lista de Unidade de Medida" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.UnidadeMedidalis" id="wLisUnidadeMedida" 
+ 		title="Lista de Unidade de Medida" border="normal" shadow="false" width="620px" 
+ 		height="480px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisUnidadeMedida.initComponentes()" logado="true">
+			    
+ 		<paging id="pagUnidadeMedida" pageSize="10"  />
+					 
+ 		<listbox id="listUnidadeMedida" model="@{wLisUnidadeMedida.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisUnidadeMedida.item}"    
+ 			onSelect="wLisUnidadeMedida.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="100px" >
+						<vbox>
+							<label value="Código"/>
+							 <intbox id="idunidademedida" value="@{wLisUnidadeMedida.unidadeMedida.idunidademedida}"  width="80px"  />
+							</vbox>
+						 </listheader>
+					<listheader  >
+						<vbox>
+							<label value="Descrição"/>
+							<textbox id="descricao" value="@{wLisUnidadeMedida.unidadeMedida.descricao}"  maxlength="300"  width="200px"  />
+							</vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=unidademedida}">
+					    <listcell	  label="@{unidademedida.idunidademedida}" />
+					    <listcell	  label="@{unidademedida.descricao}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

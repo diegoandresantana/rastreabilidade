@@ -1,0 +1,21 @@
+<Context docBase="admzk" path="/admzk" reloadable="false">
+<!-- 
+ <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="10.0.0.0/24"/> 
+-->
+	<ResourceLink name="jdbc/jndiacessos"
+            global="jdbc/jndiacessos"
+            type="javax.sql.DataSource"
+            />           
+<!--
+  <Resource driverClassName="org.postgresql.Driver"
+	          factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
+						maxActive="10"
+						maxIdle="2"
+						name="jdbc/jndiacessos"
+						password="postgres"
+						scope="Shareable"
+						type="javax.sql.DataSource"
+						url="jdbc:postgresql://localhost:5432/DBACESSOS"
+						username="postgres"/>
+ -->
+</Context>

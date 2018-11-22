@@ -1,0 +1,56 @@
+<?page id="testZul" title=" New ZUL Title" cacheable="false"language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.SetorPlantiocad" id="wCadSetorPlantio"
+		title="Cadastro de Setor de Plantio" border="normal" shadow="false"
+		width="550px" position="center" mode="overlapped" sizable="false"
+		closable="false" onCreate="wCadSetorPlantio.initComponentes()">
+		<separator height="10px" />
+		<grid width="90%" align="center">
+			<columns>
+				<column label="" align="right" />
+				<column label="" />
+			</columns>
+			<rows>
+				<row>
+					Código
+					<intbox id="idsetorplantio"
+						value="@{wCadSetorPlantio.setorPlantio.idsetorplantio}"
+						width="150px" readonly="true" />
+				</row>
+				<row>
+					Codigo do Setor
+					<textbox id="codigosetor"
+						value="@{wCadSetorPlantio.setorPlantio.codigosetor}" width="150px"
+						maxlength="20" constraint="no empty:Entre com a Codigo do Setor" />
+				</row>
+				<row>
+					Tamanho da Area
+					<textbox id="tamanhoarea"
+						value="@{wCadSetorPlantio.setorPlantio.tamanhoarea}" width="150px"
+						maxlength="20" constraint="no empty:Entre com a Tamanho da Area" />
+				</row>
+				<row>
+					Lote de Terra
+					<hbox>
+
+						<intbox id="idloteterra"
+							value="@{wCadSetorPlantio.setorPlantio.loteterra.idloteterra}"
+							readonly="true" width="60px" />
+						<textbox
+							value="@{wCadSetorPlantio.loteterra.idloteterra}" readonly="true"
+							width="250px" />
+						<image src="/images/imgBuscar.png"
+							tooltiptext="Pesquisar Lote de Terra"
+							onClick="wCadSetorPlantio.pesquisarLoteTerra()" />
+						<image src="/images/btnIncluir.png"
+							onClick="wCadSetorPlantio.addLoteTerra()" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+	</window>
+</zk>

@@ -1,0 +1,163 @@
+<?page id="LoteTerracadZul" title=" New ZUL Title" cacheable="false"language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.LoteTerracad" id="wCadLoteTerra"
+		title="Cadastro de Lote de Terra" border="normal" shadow="false"
+		width="620px" position="center" mode="overlapped" sizable="false"
+		height="450px" closable="false"  logado="true"
+		onCreate="wCadLoteTerra.initComponentes()">
+		<tabbox id="tbLoteTerra" height="320px" orient="horizontal">
+			<tabs width="20px">
+				<tab label="Lote de Terra" />
+				<tab label="Setor de Plantio" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<separator height="10px" />
+					<grid width="90%" align="center">
+						<columns>
+							<column label="" align="right" />
+							<column label="" align="left" />
+						</columns>
+						<rows>
+							<row>
+								Código
+								<intbox id="idloteterra"
+									value="@{wCadLoteTerra.loteTerra.idloteterra}" readonly="true"
+									width="150px" />
+							</row>
+							<row>
+								<hbox>
+									<label	style="font-weight:bold;color:red" value="*" />
+									<label value="Nome" />
+
+								</hbox>
+
+								<textbox id="Nome"
+									value="@{wCadLoteTerra.loteTerra.nome}" maxlength="300"
+									constraint="no empty:Entre com a Nome" width="250px" />
+							</row>
+							<row>
+								<hbox>
+									<label	style="font-weight:bold;color:red" value="*" />
+									<label value="Endereço" />
+
+								</hbox>
+
+								<textbox id="endereco"
+									value="@{wCadLoteTerra.loteTerra.endereco}" maxlength="300"
+									constraint="no empty:Entre com a Endereço" width="250px" />
+							</row>
+							<row>
+								<hbox>
+									<label
+										style="font-weight:bold;color:red" value="*" />
+									<label value="Area Total" />
+
+								</hbox>
+
+								<textbox id="areatotal"
+									value="@{wCadLoteTerra.loteTerra.areatotal}" maxlength="20"
+									constraint="no empty:Entre com a Area Total" width="150px" />
+							</row>
+							<row>
+								<hbox>
+									<label
+										style="font-weight:bold;color:red" value="*" />
+									<label value="Cidade" />
+
+								</hbox>
+
+								<hbox>
+
+									<intbox id="idcidade"
+										value="@{wCadLoteTerra.loteTerra.cidade.idcidade}"
+										readonly="true" width="60px" />
+									<textbox
+										value="@{wCadLoteTerra.cidade.nomecidade}" readonly="true"
+										width="250px" />
+									<image src="/images/imgBuscar.png"
+										tooltiptext="Pesquisar Cidade"
+										onClick="wCadLoteTerra.pesquisarCidade()" />
+									<image src="/images/btnIncluir.png"
+										onClick="wCadLoteTerra.addCidade()" />
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<separator height="10px" />
+					<grid width="90%" align="center">
+						<columns>
+							<column label="" align="right" />
+							<column label="" align="left" />
+						</columns>
+						<rows>
+
+							<row>
+								<hbox>
+									<label
+										style="font-weight:bold;color:red" value="**" />
+									<label value="Setor" />
+
+								</hbox>
+
+								<textbox id="codigosetor"
+									value="@{wCadLoteTerra.setorPlantio.codigosetor}"
+									maxlength="20" width="150px" />
+							</row>
+							<row>
+								<hbox>
+									<label
+										style="font-weight:bold;color:red" value="**" />
+									<label value="Tamanho da Area" />
+								</hbox>
+
+								<textbox id="tamanhoarea"
+									value="@{wCadLoteTerra.setorPlantio.tamanhoarea}"
+									maxlength="20" width="150px" />
+							</row>
+							<row spans="2" style="text-align:center">
+								<button image="/images/down.png"
+									onClick="wCadLoteTerra.addItem()" />
+							</row>
+						</rows>
+					</grid>
+					<listbox model="@{wCadLoteTerra.listSetorPlantio}"
+						width="600px" height="200px" mold="paging" rows="16" pageSize="10"
+						pagingPosition="top" checkmark="true">
+						<listhead>
+							<listheader label="Código" width="100px" />
+							<listheader label="Setor" width="100px" />
+							<listheader label="Tamanho da Area" width="100px" />							
+							<listheader label="" width="70px" />
+						</listhead>
+						<listitem self="@{each=setorplantio}"
+							value="@{setorplantio}">
+							<listcell label="@{setorplantio.idsetorplantio}" />
+							<listcell label="@{setorplantio.codigosetor}" />
+							<listcell label="@{setorplantio.tamanhoarea}" />							
+							<listcell label="">
+								<image src="/images/delete.png"
+									onClick="wCadLoteTerra.removerItem(self.parent.parent.value)" />
+							</listcell>
+						</listitem>
+					</listbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	    
+			<label style="color:red;font-size:10px"
+				value="*Campos Obrigatórios" />	
+	
+		       <separator height="10px" />
+			<label style="color:red;font-size:10px"
+				value="**Campos Obrigatórios para adicionar Setor" />
+		
+		<separator height="10px" />
+
+	</window>
+</zk>

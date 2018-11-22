@@ -1,0 +1,61 @@
+<?page id="wCadTipoHistoricoZul" title="Cadastro de Tipo de Histórico" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.TipoHistoricocad" id="wCadTipoHistorico"
+		title="Cadastro de Tipo de Histórico" border="normal" shadow="false"
+		width="550px" position="center" mode="overlapped" sizable="false"
+		closable="false" onCreate="wCadTipoHistorico.initComponentes()"  logado="true">
+		<separator height="10px" />
+
+		<grid width="90%" align="center">
+			<columns>
+				<column label="" align="right" />
+				<column label="" align="left" />
+			</columns>
+			<rows>
+				<row>
+					<hbox>
+						<label value="Código" />
+					</hbox>
+					<intbox id="idtipohistorico"
+						value="@{wCadTipoHistorico.tipoHistorico.idtipohistorico}"
+						readonly="true" width="80px" />
+				</row>
+				<row>
+					<hbox>
+						<label style="font-weight:bold;color:red" value="*" />
+						<label value="Descrição" />
+
+					</hbox>
+					<textbox id="descricao"
+						value="@{wCadTipoHistorico.tipoHistorico.descricao}"
+						maxlength="300" constraint="no empty:Entre com a Descrição"
+						width="250px" />
+				</row>
+				<row>
+					<hbox>
+						<label style="font-weight:bold;color:red" value="*" />
+						<label value="Unidade de Medida" />
+					</hbox>
+					<hbox>
+						<combobox id="unidademedida"
+							model="@{wCadTipoHistorico.lmUnidadeMedida}" name="unidademedida"
+							selectedItem="@{wCadTipoHistorico.unidademedida}"
+							width="150px">
+							<comboitem self="@{each=unidademedida}"
+								value="@{unidademedida}" label="@{unidademedida.descricao}" />
+						</combobox>
+						<image src="/images/btnIncluir.png"	onClick="wCadTipoHistorico.addUnidadeMedida()" />
+					</hbox>
+				</row>
+				<row spans="2" style="text-align:left">
+					<label style="color:red;font-size:10px"
+						value="*Campos Obrigatórios" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+	</window>
+</zk>

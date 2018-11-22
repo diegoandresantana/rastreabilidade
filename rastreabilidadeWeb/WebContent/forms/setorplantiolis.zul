@@ -1,0 +1,73 @@
+<?page id="wLisSetorPlantioZul" title="Lista de Setor de Plantio" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+	<window use="model.view.SetorPlantiolis" id="wLisSetorPlantio"
+		title="Lista de Setor de Plantio" border="normal" shadow="false"
+		width="620px" height="450px" position="center" mode="overlapped"
+		sizable="false" closable="true"
+		onCreate="wLisSetorPlantio.initComponentes()"  logado="true">
+		<paging id="pagSetorPlantio" pageSize="10" />
+		<listbox id="listSetorPlantio"
+			model="@{wLisSetorPlantio.listmodel}" width="600px" height="340px"
+			selectedItem="@{wLisSetorPlantio.item}"
+			onSelect="wLisSetorPlantio.selecionar()" checkmark="true">
+			<listhead>
+				<listheader width="160px">
+					<vbox>
+						<label value="Código" />
+						<intbox id="idsetorplantio"
+							value="@{wLisSetorPlantio.setorPlantio.idsetorplantio}"
+							width="150px" />
+					</vbox>
+				</listheader>
+				<listheader width="160px">
+					<vbox>
+						<label value="Codigo do Setor" />
+						<textbox id="codigosetor"
+							value="@{wLisSetorPlantio.setorPlantio.codigosetor}"
+							maxlength="20" width="150px" />
+					</vbox>
+				</listheader>
+				<listheader width="160px">
+					<vbox>
+						<label value="Tamanho da Area" />
+						<textbox id="tamanhoarea"
+							value="@{wLisSetorPlantio.setorPlantio.tamanhoarea}"
+							maxlength="20" width="150px" />
+					</vbox>
+				</listheader>
+				<listheader width="200px">
+					<vbox>
+						<label value="Lote de Terra" />
+
+						<hbox>
+							<textbox id="idloteterra"
+								value="@{wLisSetorPlantio.loteterra.nome}"
+								readonly="true" width="150px" />
+
+							<image src="/images/imgBuscar.png"
+								tooltiptext="Pesquisar Lote de Terra"
+								onClick="wLisSetorPlantio.pesquisarLoteTerra()" />
+
+						</hbox>
+					</vbox>
+				</listheader>
+			</listhead>
+			<listitem self="@{each=setorplantio}">
+				<listcell label="@{setorplantio.idsetorplantio}" />
+				<listcell label="@{setorplantio.codigosetor}" />
+				<listcell label="@{setorplantio.tamanhoarea}" />
+				<listcell label="@{setorplantio.loteterra.idloteterra}" />
+			</listitem>
+
+
+		</listbox>
+
+	</window>
+
+</zk>
+

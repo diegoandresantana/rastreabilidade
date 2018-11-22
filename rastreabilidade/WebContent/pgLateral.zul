@@ -1,0 +1,12 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+<vbox width="120px" >
+	<label value="Alguma coisa"/>
+	<label value="Alguma coisa"/>
+	<label value="Alguma coisa"/>
+	<label value="Alguma coisa"/>
+	<label value="Alguma coisa"/>
+	<label value="Alguma coisa"/>
+</vbox>
+</zk>

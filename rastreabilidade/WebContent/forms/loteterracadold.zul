@@ -1,0 +1,100 @@
+<?page id="testZul" title=" New ZUL Title" cacheable="false"language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window use="model.view.LoteTerracad" id="wCadLoteTerra"
+		title="Cadastro de Lote de Terra" border="normal" shadow="false"
+		width="550px" position="center" mode="overlapped" sizable="false"
+		closable="false" onCreate="wCadLoteTerra.initComponentes()">
+		<tabbox>
+			<tabs>
+				<tab label="Cadastros Lote de Terra" />
+				<tab label="Visualizar Lote no Mapa"
+					onClick="wCadLoteTerra.posicionarMapa()" />
+			</tabs>
+			<tabpanels>
+				<tabpanel id="tab1">
+					<separator height="10px" />
+					<grid width="90%" align="center">
+						<columns>
+							<column label="" align="right" />
+							<column label="" />
+						</columns>
+						<rows>
+							<row>
+								Código
+								<intbox id="idloteterra"
+									value="@{wCadLoteTerra.loteTerra.idloteterra}" width="150px"
+									readonly="true" />
+							</row>
+							<row>
+								Endereço
+								<textbox id="endereco"
+									value="@{wCadLoteTerra.loteTerra.endereco}" width="150px"
+									maxlength="300" constraint="no empty:Entre com a Endereço" />
+							</row>
+							<row>
+								Area Total
+								<textbox id="areatotal"
+									value="@{wCadLoteTerra.loteTerra.areatotal}" width="150px"
+									maxlength="20" constraint="no empty:Entre com a Area Total" />
+							</row>
+							<row>
+								Cidade
+								<hbox>
+
+									<intbox id="idcidade"
+										value="@{wCadLoteTerra.loteTerra.cidade.idcidade}"
+										readonly="true" width="60px" />
+									<textbox
+										value="@{wCadLoteTerra.cidade.nomecidade}" readonly="true"
+										width="250px" />
+									<image src="/images/imgBuscar.png"
+										tooltiptext="Pesquisar Cidade"
+										onClick="wCadLoteTerra.pesquisarCidade()" />
+									<image src="/images/btnIncluir.png"
+										onClick="wCadLoteTerra.addCidade()" />
+								</hbox>
+							</row>
+							<row>
+								Latitude
+								<doublebox id="latitude"
+									value="@{wCadLoteTerra.loteTerra.latitude}" width="150px"
+									maxlength="100" />
+							</row>
+							<row>
+								Longitude
+								<doublebox id="longitude"
+									value="@{wCadLoteTerra.loteTerra.longitude}" width="150px"
+									maxlength="100" />
+							</row>
+
+						</rows>
+					</grid>
+
+
+					<separator height="10px" />
+				</tabpanel>
+				<tabpanel id="tab2">
+					<vbox>
+						<gmaps id="map" visible="true" width="500px"
+							zoom="16" height="300px" hybrid="true" scrollWheelZoom="true">
+
+
+							<attribute name="onMapMove">
+	center.setValue("" + self.lat + "," + self.lng);
+</attribute>
+
+						</gmaps>
+
+						<label id="center"
+							value="${map.lat},${map.lng}" />
+					</vbox>
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+
+	</window>
+</zk>

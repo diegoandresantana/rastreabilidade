@@ -1,0 +1,80 @@
+<?page id="wCadClienteZul" title="Cadastro de Cliente" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?> 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"> 
+ 	<window use="model.view.Clientecad" id="wCadCliente" 
+ 		title="Cadastro de Cliente" border="normal" shadow="false" 
+ 		width="550px" position="center" mode="overlapped" sizable="false" 
+ 		closable="false" onCreate="wCadCliente.initComponentes()"> 
+ 		<separator height="10px" /> 
+ 		 
+ 		<grid width="90%" align="center"> 
+ 			<columns> 
+ 				<column label="" align="right" /> 
+ 				<column label="" align="left" />				 
+ 			</columns> 
+ 			<rows>			 
+ 				<row>
+	<hbox>
+		<label value="Código" />
+		</hbox>
+	 <intbox id="idcliente" value="@{wCadCliente.cliente.idcliente}"  readonly="true"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Nome" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<textbox id="nomecliente" value="@{wCadCliente.cliente.nomecliente}" maxlength="100"  constraint="no empty:Entre com a Nome" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="CNPJ" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<textbox id="cnpj" value="@{wCadCliente.cliente.cnpj}" maxlength="20"  constraint="no empty:Entre com a CNPJ" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Endereço" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<textbox id="endereco" value="@{wCadCliente.cliente.endereco}" maxlength="150"  constraint="no empty:Entre com a Endereço" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Empresa" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<textbox id="empresa" value="@{wCadCliente.cliente.empresa}" maxlength="100"  constraint="no empty:Entre com a Empresa" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Cidade" />
+		<label style="color:red" value="*" />
+		</hbox>
+	
+<hbox>
+		
+ 	 
+<intbox id="idcidade"  value="@{wCadCliente.cidade.idcidade}"  width="60px"   onOK="wCadCliente.buscaPorCodCidade()"  />
+		
+ <textbox value="@{wCadCliente.cidade.nomecidade}"  readonly="true" width="250px" />
+		
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Cidade" 	   onClick="wCadCliente.pesquisarCidade()"/>
+		<image src="/images/btnIncluir.png" onClick="wCadCliente.addCidade()"/>
+		
+</hbox>
+	 </row>
+ 
+ 				 
+ 				<row spans="2" style="text-align:left"> 
+ 				<label style="color:red" value="*Campos Obrigatórios" /> 
+ 				</row> 
+ 			</rows> 
+ 		</grid> 
+ 		<separator height="10px" /> 
+ 	</window> 
+ </zk> 
+ 

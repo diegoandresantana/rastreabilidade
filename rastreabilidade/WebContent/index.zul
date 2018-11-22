@@ -1,0 +1,104 @@
+<?page id="principal" title=".::Sistema de Rastreabilidade de Vegetais::." cacheable="false"language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+<?script src="/tiqweb/js/jquery.js" ?>
+<?script src="/tiqweb/js/jquery.meio.mask.js" ?>
+<?script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg"
+    type="text/javascript"?>
+
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<script type="text/javascript">
+	 
+	    jQuery.noConflict();
+		function applyMask(compId, mask){
+			compId = '#' + compId;				
+			jQuery(compId).setMask(mask);
+		}
+
+	  
+   </script>
+
+	<window use="model.view.Principal" id="wPrincipal"
+		border="normal"  shadow="false" 
+		position="center" mode="embedded" 
+		closable="false" onCreate="wPrincipal.initComponentes()">
+		<!-- 
+		<tabbox>
+		<tabs>
+			<tab label="Cadastros Principais" />
+			<tab label="Cadastros Auxiliares" />
+			<tab label="Consultas" />
+			<tab label="Relatórios" />			
+		</tabs>		
+		<tabpanels>
+			<tabpanel id="tab1" >
+			       <button id="uf" label="UF">
+			               <attribute name="onClick">
+							   wPrincipal.abrirTela("ufcad.zul");
+							</attribute>
+			        </button>
+			</tabpanel>
+			<tabpanel id="tab2">
+			
+			</tabpanel>
+			<tabpanel id="tab3">
+			
+			</tabpanel>
+			<tabpanel id="tab4">
+			
+			</tabpanel>			
+		</tabpanels>
+	</tabbox>		-->
+    <image id="img" src="/images/principal/logo.png"/>
+	<menubar id="menubar" width="100%">
+		<menu label="Cadastros Principais" image="/img/Centigrade-Widget-Icons/Briefcase-16x16.png">
+			<menupopup>		
+			    <menuitem label="Gerenciar Produto" onClick="wPrincipal.abrirTela(self.value)" value="gerenciarprodutocad.zul"  />
+				<menuitem label="Historico" onClick="wPrincipal.abrirTela(self.value)" value="historicocad.zul"  />
+				
+				<menuitem label="Lote de Vegetal" onClick="wPrincipal.abrirTela(self.value)" value="lotevegetalcad.zul"  />				
+				<menuitem label="Nota Fiscal" onClick="wPrincipal.abrirTela(self.value)" value="notafiscalcad.zul"  />
+				<!--<menuitem label="Nota Item" onClick="wPrincipal.abrirTela(self.value)" value="notaitemcad.zul"  />		-->
+				<menuseparator></menuseparator>
+				<menuitem label="Sair"  onClick="wPrincipal.desconectar()"   image="/images/toolbar/btnSair.png"  />
+			</menupopup>
+		</menu>
+		<menu label="Cadastros Auxiliares" image="/img/Centigrade-Widget-Icons/Briefcase-16x16.png">
+			<menupopup>				
+				<menuitem label="Cidade" onClick="wPrincipal.abrirTela(self.value)" value="cidadecad.zul" />
+				<menuitem label="Estado" onClick="wPrincipal.abrirTela(self.value)" value="ufcad.zul" />
+				<menuitem label="Cliente" onClick="wPrincipal.abrirTela(self.value)" value="clientecad.zul" />
+				<menuitem label="Produto" onClick="wPrincipal.abrirTela(self.value)" value="produtocad.zul"  />
+				<menuitem label="Fornecedor" onClick="wPrincipal.abrirTela(self.value)" value="fornecedorcomplexcad.zul"  />
+				<menu label="Areas de Plantio" >
+				   <menupopup>
+					<menuitem label="Lote de Terra" onClick="wPrincipal.abrirTela(self.value)" value="loteterracad.zul"  />
+					<!-- <menuitem label="SetorPlantio" onClick="wPrincipal.abrirTela(self.value)" value="setorplantiocad.zul"  /> -->
+				   </menupopup>
+				</menu>
+				<menuitem label="DestinoLote" onClick="wPrincipal.abrirTela(self.value)" value="destinolotecad.zul"  />
+				<menuitem label="TipoHistorico" onClick="wPrincipal.abrirTela(self.value)" value="tipohistoricocad.zul"  />
+				<menuitem label="Tipo de Produto" onClick="wPrincipal.abrirTela(self.value)" value="tipoprodutocad.zul"  />
+				<menuitem label="UF" onClick="wPrincipal.abrirTela(self.value)" value="ufcad.zul"  />
+				<menuitem label="Unidade de Medida" onClick="wPrincipal.abrirTela(self.value)" value="unidademedidacad.zul"  />
+			</menupopup>
+		</menu>
+		<menu label="Consultas" >
+			<menupopup>				
+				<menuitem label="Exit" image="/images/btnSair.png" />
+			</menupopup>
+		</menu>
+		<menu label="Relatorio" >
+			<menupopup>				
+				<menuitem label="Exit" image="/images/btnSair.png"  />
+			</menupopup>
+		</menu>
+	   </menubar>
+	   
+		
+
+	   
+	</window>
+</zk>

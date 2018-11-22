@@ -1,0 +1,82 @@
+<?page id="wLisFornecedorZul" title="Lista de Fornecedor" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.Fornecedorlis" id="wLisFornecedor" 
+ 		title="Lista de Fornecedor" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisFornecedor.initComponentes()">
+			    
+ 		<paging id="pagFornecedor" pageSize="10"  />
+					 
+ 		<listbox id="listFornecedor" model="@{wLisFornecedor.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisFornecedor.item}"    
+ 			onSelect="wLisFornecedor.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <intbox id="idfornecedor" value="@{wLisFornecedor.fornecedor.idfornecedor}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Nome do Fornecedor"/>
+							<textbox id="nomefornecedor" value="@{wLisFornecedor.fornecedor.nomefornecedor}"  maxlength="100"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Descrição"/>
+							<textbox id="descricao" value="@{wLisFornecedor.fornecedor.descricao}"  maxlength="300"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Descrição"/>
+							<textbox id="endereco" value="@{wLisFornecedor.fornecedor.endereco}"  maxlength="150"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Cpf/Cnpj"/>
+							<textbox id="cnpj" value="@{wLisFornecedor.fornecedor.cnpj}"  maxlength="20"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Cidade"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="nomecidade" value="@{wLisFornecedor.cidade.nomecidade}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Cidade" 	   onClick="wLisFornecedor.pesquisarCidade()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=fornecedor}">
+					    <listcell	  label="@{fornecedor.idfornecedor}" />
+					    <listcell	  label="@{fornecedor.nomefornecedor}" />
+					    <listcell	  label="@{fornecedor.descricao}" />
+					    <listcell	  label="@{fornecedor.endereco}" />
+					    <listcell	  label="@{fornecedor.cnpj}" />
+					    <listcell	  label="@{fornecedor.cidade.nomecidade}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

@@ -1,0 +1,43 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<!-- 
+	
+	<tabbox id="tb2" height="100%" orient="horizontal">
+		<tabs width="20px">
+			<tab label="Pendentes de Pagamento" />
+			<tab label="Alugueis com Vencimento nos Proximos 10 dias" />
+			<tab label="Contratos Vencidos e a Vencer" />
+			<tab label="D" />
+			<tab label="E" />
+		</tabs>
+		<tabpanels>
+			<tabpanel><include src="forms/pendentepagamento.zul" /></tabpanel>
+			<tabpanel><include src="forms/proximovencimento.zul" /></tabpanel>
+			<tabpanel><include src="forms/vencimentocontrato.zul" /></tabpanel>
+			<tabpanel></tabpanel>
+			<tabpanel></tabpanel>
+
+		</tabpanels>
+	</tabbox>
+	<hbox style="position:absolute;bottom:5px;width:100%;"
+		width="400px">
+		<space width="5px" />
+		<fisheyebar id="fsb" attachEdge="bottom" itemWidth="40"
+			orient="horizontal" itemHeight="40" itemMaxHeight="80"
+			itemMaxWidth="80" labelEdge="top">
+			<fisheye image="/images/ico/FolderABlue-128x128.png"
+				label="Folder" onClick="alert(self.label)" />
+			<fisheye image="/images/ico/ReadingGlass-128x128.png"
+				label="Reading Glasses" onClick="alert(self.label)" />
+			<fisheye image="/images/ico/Briefcase-128x128.png"
+				label="Project" onClick="alert(self.label)" />
+			<fisheye image="/images/ico/MailboxFlag-128x128.png"
+				label="Email" onClick="alert(self.label)" />
+			<fisheye image="/images/ico/Globe-128x128.png" label="Globe"
+				onClick="alert(self.label)" />
+			<fisheye image="/images/ico/Spyglass-128x128.png"
+				label="Spyglass" onClick="alert(self.label)" />
+		</fisheyebar>
+	</hbox>
+	 -->
+</zk>

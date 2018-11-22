@@ -1,0 +1,75 @@
+<?page id="wLisLoteVegetalZul" title="Lista de Lote de Vegetal" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.LoteVegetallis" id="wLisLoteVegetal" 
+ 		title="Lista de Lote de Vegetal" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisLoteVegetal.initComponentes()"  logado="true">
+			    
+ 		<paging id="pagLoteVegetal" pageSize="10"  />
+					 
+ 		<listbox id="listLoteVegetal" model="@{wLisLoteVegetal.listmodel}" width="600px" 
+ 			height="340px" selectedItem="@{wLisLoteVegetal.item}"    
+ 			onSelect="wLisLoteVegetal.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <longbox id="idlotevegetal" value="@{wLisLoteVegetal.loteVegetal.idlotevegetal}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Tipo de Vegetal"/>
+							<textbox id="tipovegetal" value="@{wLisLoteVegetal.loteVegetal.tipovegetal}"  maxlength="60"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Inicio do Plantio"/>
+							  <datebox id="inicioplantio" value="@{wLisLoteVegetal.loteVegetal.inicioplantio}"  format="dd/MM/yyyy"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Final da Colheita"/>
+							  <datebox id="finalcolheita" value="@{wLisLoteVegetal.loteVegetal.finalcolheita}"  format="dd/MM/yyyy"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Setor de Plantio"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="codigosetor" value="@{wLisLoteVegetal.setorplantio.codigosetor}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Setor de Plantio" 	   onClick="wLisLoteVegetal.pesquisarSetorPlantio()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=lotevegetal}">
+					    <listcell	  label="@{lotevegetal.idlotevegetal}" />
+					    <listcell	  label="@{lotevegetal.tipovegetal}" />
+					    <listcell	  label="@{lotevegetal.inicioplantio}" />
+					    <listcell	  label="@{lotevegetal.finalcolheita}" />
+					    <listcell	  label="@{lotevegetal.setorplantio.codigosetor}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

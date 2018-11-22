@@ -1,0 +1,37 @@
+<?page title="Login" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window use="model.view.Login" id="wLogin" title="Login" 
+		border="normal" maximizable="false"   minimized="false" onCreate="wLogin.initComponentes()" closable="false" maximized="false" position="center"  sizable="false" width="200px">
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<hbox>
+						<image src="images/principal/user.png"/>
+						<label value="Login:"/>
+						
+					</hbox>
+					<textbox id="login"  width="100px" value="@{wLogin.usuario.loginusu}"/>
+				</row>
+				<row>
+					<hbox>
+					     <image src="images/principal/chave.png"/>
+						<label value="Senha:" width="100px"/>
+						
+					</hbox>
+					<textbox id="senha" type="password"  width="100px" value="@{wLogin.usuario.senha}"/>
+				</row>
+				<row spans="2" align="right">
+					<hbox>
+						<button id="botaologin" label="Logar"
+							onClick="wLogin.verificaLogin()">
+						</button>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

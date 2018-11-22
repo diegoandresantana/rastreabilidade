@@ -1,0 +1,82 @@
+<?page id="wLisClienteZul" title="Lista de Cliente" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.Clientelis" id="wLisCliente" 
+ 		title="Lista de Cliente" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisCliente.initComponentes()">
+			    
+ 		<paging id="pagCliente" pageSize="10"  />
+					 
+ 		<listbox id="listCliente" model="@{wLisCliente.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisCliente.item}"    
+ 			onSelect="wLisCliente.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <intbox id="idcliente" value="@{wLisCliente.cliente.idcliente}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Nome"/>
+							<textbox id="nomecliente" value="@{wLisCliente.cliente.nomecliente}"  maxlength="100"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="CNPJ"/>
+							<textbox id="cnpj" value="@{wLisCliente.cliente.cnpj}"  maxlength="20"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Endereço"/>
+							<textbox id="endereco" value="@{wLisCliente.cliente.endereco}"  maxlength="150"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Empresa"/>
+							<textbox id="empresa" value="@{wLisCliente.cliente.empresa}"  maxlength="100"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Cidade"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="nomecidade" value="@{wLisCliente.cidade.nomecidade}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Cidade" 	   onClick="wLisCliente.pesquisarCidade()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=cliente}">
+					    <listcell	  label="@{cliente.idcliente}" />
+					    <listcell	  label="@{cliente.nomecliente}" />
+					    <listcell	  label="@{cliente.cnpj}" />
+					    <listcell	  label="@{cliente.endereco}" />
+					    <listcell	  label="@{cliente.empresa}" />
+					    <listcell	  label="@{cliente.cidade.nomecidade}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

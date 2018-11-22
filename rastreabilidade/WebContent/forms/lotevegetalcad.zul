@@ -1,0 +1,73 @@
+<?page id="wCadLoteVegetalZul" title="Cadastro de Lote de Vegetal" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?> 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"> 
+ 	<window use="model.view.LoteVegetalcad" id="wCadLoteVegetal" 
+ 		title="Cadastro de Lote de Vegetal" border="normal" shadow="false" 
+ 		width="550px" position="center" mode="overlapped" sizable="false" 
+ 		closable="false" onCreate="wCadLoteVegetal.initComponentes()"> 
+ 		<separator height="10px" /> 
+ 		 
+ 		<grid width="90%" align="center"> 
+ 			<columns> 
+ 				<column label="" align="right" /> 
+ 				<column label="" align="left" />				 
+ 			</columns> 
+ 			<rows>			 
+ 				<row>
+	<hbox>
+		<label value="Código" />
+		</hbox>
+	 <longbox id="idlotevegetal" value="@{wCadLoteVegetal.loteVegetal.idlotevegetal}"  readonly="true"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Tipo de Vegetal" />
+		<label style="color:red" value="*" />
+		</hbox>
+	<textbox id="tipovegetal" value="@{wCadLoteVegetal.loteVegetal.tipovegetal}" maxlength="60"  constraint="no empty:Entre com a Tipo de Vegetal" width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Inicio do Plantio" />
+		<label style="color:red" value="*" />
+		</hbox>
+	 <datebox id="inicioplantio" value="@{wCadLoteVegetal.loteVegetal.inicioplantio}"  constraint="no empty:Entre com a Inicio do Plantio" format="dd/MM/yyyy"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Final da Colheita" />
+		<label style="color:red" value="*" />
+		</hbox>
+	 <datebox id="finalcolheita" value="@{wCadLoteVegetal.loteVegetal.finalcolheita}"  constraint="no empty:Entre com a Final da Colheita" format="dd/MM/yyyy"  width="150px"  />
+	</row>
+<row>
+	<hbox>
+		<label value="Setor de Plantio" />
+		<label style="color:red" value="*" />
+		</hbox>
+	
+<hbox>
+		
+ 	 
+<intbox id="idsetorplantio"  value="@{wCadLoteVegetal.setorplantio.idsetorplantio}"  width="60px"   onOK="wCadLoteVegetal.buscaPorCodSetorPlantio()"  />
+		
+ <textbox value="@{wCadLoteVegetal.setorplantio.codigosetor}"  readonly="true" width="250px" />
+		
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Setor de Plantio" 	   onClick="wCadLoteVegetal.pesquisarSetorPlantio()"/>
+		<image src="/images/btnIncluir.png" onClick="wCadLoteVegetal.addSetorPlantio()"/>
+		
+</hbox>
+	 </row>
+ 
+ 				 
+ 				<row spans="2" style="text-align:left"> 
+ 				<label style="color:red" value="*Campos Obrigatórios" /> 
+ 				</row> 
+ 			</rows> 
+ 		</grid> 
+ 		<separator height="10px" /> 
+ 	</window> 
+ </zk> 
+ 

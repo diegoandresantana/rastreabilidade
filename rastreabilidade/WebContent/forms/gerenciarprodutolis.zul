@@ -1,0 +1,90 @@
+<?page id="wLisGerenciarProdutoZul" title="Lista de Gerenciamento de Produtos" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.GerenciarProdutolis" id="wLisGerenciarProduto" 
+ 		title="Lista de Gerenciamento de Produtos" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisGerenciarProduto.initComponentes()">
+			    
+ 		<paging id="pagGerenciarProduto" pageSize="10"  />
+					 
+ 		<listbox id="listGerenciarProduto" model="@{wLisGerenciarProduto.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisGerenciarProduto.item}"    
+ 			onSelect="wLisGerenciarProduto.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <longbox id="idgerenciarproduto" value="@{wLisGerenciarProduto.gerenciarProduto.idgerenciarproduto}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Descrição"/>
+							<textbox id="descricao" value="@{wLisGerenciarProduto.gerenciarProduto.descricao}"  maxlength="300"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Data da Utilização"/>
+							  <datebox id="datautilizacao" value="@{wLisGerenciarProduto.gerenciarProduto.datautilizacao}"  format="dd/MM/yyyy"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Quantidade Utilizada"/>
+							<doublebox id="quantidadeutilizada" value="@{wLisGerenciarProduto.gerenciarProduto.quantidadeutilizada}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Lote de Vegetal"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="idlotevegetal" value="@{wLisGerenciarProduto.lotevegetal.idlotevegetal}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Lote de Vegetal" 	   onClick="wLisGerenciarProduto.pesquisarLoteVegetal()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Itens da Nota"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="idnotaitem" value="@{wLisGerenciarProduto.notaitem.idnotaitem}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Itens da Nota" 	   onClick="wLisGerenciarProduto.pesquisarNotaItem()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=gerenciarproduto}">
+					    <listcell	  label="@{gerenciarproduto.idgerenciarproduto}" />
+					    <listcell	  label="@{gerenciarproduto.descricao}" />
+					    <listcell	  label="@{gerenciarproduto.datautilizacao}" />
+					    <listcell	  label="@{gerenciarproduto.quantidadeutilizada}" />
+					    <listcell	  label="@{gerenciarproduto.lotevegetal.idlotevegetal}" />
+					    <listcell	  label="@{gerenciarproduto.notaitem.idnotaitem}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 

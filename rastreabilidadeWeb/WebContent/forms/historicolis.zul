@@ -1,0 +1,83 @@
+<?page id="wLisHistoricoZul" title="..::Rastreabilidade de Vegetais::.." cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	
+		
+	<window use="model.view.Historicolis" id="wLisHistorico"
+		 border="normal" shadow="false"
+		width="100%" height="100%" position="center" 
+		sizable="false" 
+		onCreate="wLisHistorico.initComponentes()">
+	
+        <grid>
+           <columns>
+             <column align="right" width="200px"></column>
+             <column align="left"></column>             
+           </columns>
+           <rows>
+           <row>
+            <label value="Pesquise o Lote de Vegetal" style="color:red;font-weight:bold;"></label>
+            <longbox  value="@{wLisHistorico.idlotevegetal}" tooltiptext="Entre com o Codigo do Lote de Vegetal" onChange="wLisHistorico.pesquisar()" onOK="wLisHistorico.pesquisar()"></longbox>
+           </row>
+           <row spans="2">
+            <separator bar="true" orient="horizontal"></separator>
+           </row>
+             <row>
+               <label value="Tipo de Vegetal:"/>
+               <textbox width="250px" value="@{wLisHistorico.lotevegetal.tipovegetal}" readonly="true" ></textbox>
+             </row>
+              <row>
+               <label value="Nome do Local:"/>
+               <textbox width="450px" value="@{wLisHistorico.lotevegetal.setorplantio.loteterra.nome}" readonly="true"  ></textbox>
+             </row>
+             <row>
+               <label value="Localização:"/>
+               <hbox>
+               <textbox width="450px" value="@{wLisHistorico.lotevegetal.setorplantio.loteterra.endereco}" readonly="true"  ></textbox>
+                 <label value="Setor:"/>
+               <textbox width="250px" value="@{wLisHistorico.lotevegetal.setorplantio.codigosetor}" readonly="true"  ></textbox>
+               </hbox>
+             </row>              
+             <row>
+                <label value="Data do Plantio:"></label> 
+                <hbox>
+                <datebox format="dd/MM/yyyy" readonly="true" value="@{wLisHistorico.lotevegetal.inicioplantio}" width="80px" buttonVisible="false"></datebox>
+                 <label value="Data da Colheita:"></label>
+                 <datebox format="dd/MM/yyyy"  readonly="true"  value="@{wLisHistorico.lotevegetal.finalcolheita}" width="80px" buttonVisible="false"></datebox>
+                 </hbox>
+             </row>
+           
+           </rows>
+        </grid>
+        <paging id="pagHistorico" pageSize="10" />
+		<listbox id="listHistorico" model="@{wLisHistorico.listmodel}"
+			width="99%" height="350px" 
+			 checkmark="false">
+			<listhead>			
+				<listheader width="260px" label="Descrição "/>					
+				<listheader width="170px" label="Data"/>				
+				<listheader width="160px" label="Dado Númerico" />
+				<listheader width="183px" label="Tipo de Histórico" />
+				<listheader width="183px" label="Unidade de Medida" />	
+			</listhead>
+			<listitem self="@{each=historico}">			
+				<listcell label="@{historico.descricao}" />
+				<listcell label="" >
+			    	<datebox readonly="true" buttonVisible="false" value="@{historico.data}" format="dd/MM/yyyy"></datebox>
+				</listcell>
+				<listcell label="@{historico.dadonumerico}" />			
+				<listcell label="@{historico.tipohistorico.descricao}" />
+				<listcell label="@{historico.tipohistorico.unidademedida.descricao}" />
+					
+			</listitem>
+
+
+		</listbox>
+
+	</window>
+
+</zk>
+

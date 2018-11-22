@@ -1,0 +1,83 @@
+<?page id="wLisNotaItemZul" title="Lista de Itens da Nota" cacheable="false" language="xul/html" zscriptLanguage="Java" contentType="text/html;charset=UTF-8"?>
+	 
+ <zk xmlns="http://www.zkoss.org/2005/zul" 
+ 	xmlns:h="http://www.w3.org/1999/xhtml" 
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-infabnce" 
+ 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+		 
+ 	<window use="model.view.NotaItemlis" id="wLisNotaItem" 
+ 		title="Lista de Itens da Nota" border="normal" shadow="false" width="620px" 
+ 		height="450px" position="center" mode="overlapped" sizable="false" 
+ 		closable="true" onCreate="wLisNotaItem.initComponentes()">
+			    
+ 		<paging id="pagNotaItem" pageSize="10"  />
+					 
+ 		<listbox id="listNotaItem" model="@{wLisNotaItem.listmodel}" width="600px" 
+ 			height="360px" selectedItem="@{wLisNotaItem.item}"    
+ 			onSelect="wLisNotaItem.selecionar()" checkmark="true">
+				 
+ 		 
+ 			 <listhead>
+					 <listheader width="160px" >
+						<vbox>
+							<label value="Código"/>
+							 <longbox id="idnotaitem" value="@{wLisNotaItem.notaItem.idnotaitem}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Quantidade"/>
+							<doublebox id="quantidade" value="@{wLisNotaItem.notaItem.quantidade}"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="160px" >
+						<vbox>
+							<label value="Validade"/>
+							  <datebox id="validade" value="@{wLisNotaItem.notaItem.validade}"  format="dd/MM/yyyy"  width="150px"  />
+							</vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Produtos do Fornecedor"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="idfornecedorproduto" value="@{wLisNotaItem.fornecedorproduto.idfornecedorproduto}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Produtos do Fornecedor" 	   onClick="wLisNotaItem.pesquisarFornecedorProduto()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					<listheader width="200px" >
+						<vbox>
+							<label value="Nota Fiscal"/>
+							
+<hbox>
+								
+ 	
+ <textbox id="idnotafiscal" value="@{wLisNotaItem.notafiscal.idnotafiscal}" readonly="true" width="150px" />
+								
+<image src="/images/imgBuscar.png" tooltiptext="Pesquisar Nota Fiscal" 	   onClick="wLisNotaItem.pesquisarNotaFiscal()"/>
+								
+</hbox>
+							 </vbox>
+						 </listheader>
+					 </listhead>
+				  <listitem self="@{each=notaitem}">
+					    <listcell	  label="@{notaitem.idnotaitem}" />
+					    <listcell	  label="@{notaitem.quantidade}" />
+					    <listcell	  label="@{notaitem.validade}" />
+					    <listcell	  label="@{notaitem.fornecedorproduto.idfornecedorproduto}" />
+					    <listcell	  label="@{notaitem.notafiscal.idnotafiscal}" />
+					    </listitem>
+				 
+ 			 
+ 		</listbox>
+			 
+ 	</window>
+		 
+ </zk>
+	 
+ 
